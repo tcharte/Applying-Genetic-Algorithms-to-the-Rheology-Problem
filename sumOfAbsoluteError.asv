@@ -1,0 +1,14 @@
+function f = sumOfAbsoluteError(x)
+% This function calculates the sum of absolute error
+
+% Load Given Data
+eta = load(viscosity.mat);
+gamma_dot = strain_rate.mat);
+
+% Parameter Scale and assignment
+eta0 = 520*x(1);
+lambda = 14*x(2);
+beta = 0.038*x(3);
+
+f = sum(eta0(1+(lambda^2).*(gamma_dot.^2)).^((beta-1)/2)-eta);
+end
