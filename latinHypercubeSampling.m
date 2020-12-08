@@ -8,17 +8,33 @@ for i = 1:n
 end
 r = rand(n,p);
 x = l + ((PI-r)./p).*(u-l);
+f_best = inf;
 
 switch n
     case 1
-        [f_best, i] = min(f(x));
-        x_best = x(i);
+        for i = 1:length(x)
+            f_val = f(x(1,i));
+            if f_val < f_best
+                f_best = f_val;
+                x_best = x(1,i);
+            end
+        end
     case 2
-        [f_best, i] = min(f(x(1,:),x(2,:)));
-        x_best = [x(1,i), x(2,i)];
+        for i = 1:length(x)
+            f_val = f([x(1,i),x(2,i)]);
+            if f_val < f_best
+                f_best = f_val;
+                x_best = [x(1,i),x(2,i)]';
+            end
+        end
     case 3
-        [f_best, i] = min(f(x(1,:),x(2,:),x(3,:)));
-        x_best = [x(1,i), x(2,i), x(3,i)];
+        for i = 1:length(x)
+            f_val = f([x(1,i),x(2,i),x(3,i)]);
+            if f_val < f_best
+                f_best = f_val;
+                x_best = [[x(1,i),x(2,i),x(3,i)]]';
+            end
+        end
     otherwise
         error('n is too large')
 end
